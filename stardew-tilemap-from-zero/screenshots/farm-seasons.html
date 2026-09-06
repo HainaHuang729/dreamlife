@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>四季农场截图</title>
+    <style>
+      body {
+        margin: 0;
+        background: #151814;
+        color: #f4ecd8;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+      }
+
+      main {
+        max-width: 1520px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+
+      h1 {
+        margin: 0 0 18px;
+        font-size: 28px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      figure {
+        margin: 0;
+        border: 1px solid #3f4735;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #20241d;
+      }
+
+      img {
+        display: block;
+        width: 100%;
+        image-rendering: pixelated;
+      }
+
+      figcaption {
+        border-top: 1px solid #3f4735;
+        padding: 10px 12px;
+        color: #e7b34d;
+        font-weight: 700;
+      }
+
+      @media (max-width: 900px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>四季农场截图</h1>
+      <section class="grid">
+        <figure>
+          <img src="./farm-spring.png" alt="春季农场截图" />
+          <figcaption>春季</figcaption>
+        </figure>
+        <figure>
+          <img src="./farm-summer.png" alt="夏季农场截图" />
+          <figcaption>夏季</figcaption>
+        </figure>
+        <figure>
+          <img src="./farm-autumn.png" alt="秋季农场截图" />
+          <figcaption>秋季</figcaption>
+        </figure>
+        <figure>
+          <img src="./farm-winter.png" alt="冬季农场截图" />
+          <figcaption>冬季</figcaption>
+        </figure>
+      </section>
+    </main>
+  </body>
+</html>

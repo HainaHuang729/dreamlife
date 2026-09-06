@@ -1,0 +1,86 @@
+{
+  "source": "/Users/amadeus/.codex/generated_images/019dd771-e189-7c83-8edd-28957e8203e9/ig_03b5e560e2af568c0169f1927c2a4081918727171bb8081130.png",
+  "grid": [
+    4,
+    12
+  ],
+  "frame_size": [
+    128,
+    256
+  ],
+  "duration_ms": 120,
+  "animations": [
+    {
+      "name": "idle_local_motion",
+      "gif": "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/white_t_idle_local_motion.gif",
+      "frames": [
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/idle_local_motion/idle_local_motion_00.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/idle_local_motion/idle_local_motion_01.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/idle_local_motion/idle_local_motion_02.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/idle_local_motion/idle_local_motion_03.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/idle_local_motion/idle_local_motion_04.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/idle_local_motion/idle_local_motion_05.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/idle_local_motion/idle_local_motion_06.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/idle_local_motion/idle_local_motion_07.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/idle_local_motion/idle_local_motion_08.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/idle_local_motion/idle_local_motion_09.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/idle_local_motion/idle_local_motion_10.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/idle_local_motion/idle_local_motion_11.png"
+      ]
+    },
+    {
+      "name": "wave",
+      "gif": "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/white_t_wave.gif",
+      "frames": [
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/wave/wave_00.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/wave/wave_01.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/wave/wave_02.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/wave/wave_03.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/wave/wave_04.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/wave/wave_05.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/wave/wave_06.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/wave/wave_07.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/wave/wave_08.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/wave/wave_09.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/wave/wave_10.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/wave/wave_11.png"
+      ]
+    },
+    {
+      "name": "walk_in_place",
+      "gif": "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/white_t_walk_in_place.gif",
+      "frames": [
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/walk_in_place/walk_in_place_00.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/walk_in_place/walk_in_place_01.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/walk_in_place/walk_in_place_02.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/walk_in_place/walk_in_place_03.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/walk_in_place/walk_in_place_04.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/walk_in_place/walk_in_place_05.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/walk_in_place/walk_in_place_06.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/walk_in_place/walk_in_place_07.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/walk_in_place/walk_in_place_08.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/walk_in_place/walk_in_place_09.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/walk_in_place/walk_in_place_10.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/walk_in_place/walk_in_place_11.png"
+      ]
+    },
+    {
+      "name": "turn_look",
+      "gif": "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/white_t_turn_look.gif",
+      "frames": [
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/turn_look/turn_look_00.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/turn_look/turn_look_01.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/turn_look/turn_look_02.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/turn_look/turn_look_03.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/turn_look/turn_look_04.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/turn_look/turn_look_05.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/turn_look/turn_look_06.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/turn_look/turn_look_07.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/turn_look/turn_look_08.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/turn_look/turn_look_09.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/turn_look/turn_look_10.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/white_t_actions/frames/turn_look/turn_look_11.png"
+      ]
+    }
+  ]
+}

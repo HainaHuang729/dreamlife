@@ -1,0 +1,772 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:," />
+    <title>Tilemap From Zero</title>
+    <link rel="stylesheet" href="./styles.css?v=0.2.0-art-0.2.18-motion-0.2.7-resource-art-0.2" />
+    <script>
+      window.__tilemapBootErrors = [];
+      window.__tilemapBooted = false;
+      window.__showTilemapBootError = function (title, message) {
+        window.__tilemapBootErrors.push(message || "Unknown error");
+        var box = document.querySelector("#bootOverlay");
+        if (!box) return;
+        var titleNode = box.querySelector("strong");
+        var messageNode = box.querySelector("p");
+        var detailNode = box.querySelector("#bootErrorDetail");
+        box.hidden = false;
+        if (titleNode) titleNode.textContent = title || "启动失败";
+        if (messageNode) messageNode.textContent = message || "脚本运行时错误。";
+        if (detailNode) detailNode.textContent = window.__tilemapBootErrors.join("\n");
+      };
+      window.addEventListener("error", (event) => {
+        window.__showTilemapBootError("启动失败", event.message || "脚本运行时错误。");
+      });
+      window.addEventListener("unhandledrejection", (event) => {
+        var reason = event.reason;
+        var message = reason && reason.message ? reason.message : String(reason || "Unhandled promise rejection");
+        window.__showTilemapBootError("启动失败", message);
+      });
+      window.setTimeout(function () {
+        if (window.__tilemapBooted) return;
+        var box = document.querySelector("#bootOverlay");
+        if (!box || box.hidden) return;
+        window.__showTilemapBootError("启动超时", "主脚本没有完成启动。请刷新；如果仍失败，把下面的错误详情发给 Codex。");
+      }, 5000);
+    </script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="game-panel" aria-label="Tilemap prototype">
+        <canvas id="game" width="960" height="640" tabindex="0"></canvas>
+        <div
+          id="bootOverlay"
+          class="boot-overlay"
+          style="position:absolute;inset:16px;z-index:20;display:grid;place-items:center;border:1px solid rgba(231,179,77,.35);border-radius:8px;background:rgba(16,20,15,.94);color:#f4ecd8;font:700 14px system-ui,sans-serif;text-align:center;padding:20px;"
+        >
+          <div>
+            <strong style="display:block;color:#e7b34d;font-size:18px;margin-bottom:8px;">正在启动</strong>
+            <p style="margin:0;color:#c7bfae;">如果一直停在这里，请刷新页面；若脚本报错，会在这里显示原因。</p>
+            <pre id="bootErrorDetail" style="max-width:min(720px,80vw);max-height:180px;overflow:auto;margin:12px auto 0;padding:10px;border:1px solid rgba(231,179,77,.22);border-radius:6px;background:rgba(0,0,0,.28);color:#f4ecd8;text-align:left;white-space:pre-wrap;font:12px/1.45 ui-monospace,SFMono-Regular,Menlo,monospace;"></pre>
+          </div>
+        </div>
+        <div class="hud" hidden aria-hidden="true">
+          <div>
+            <span class="label">Map</span>
+            <strong id="mapName">Farm</strong>
+          </div>
+          <div>
+            <span class="label">Tile</span>
+            <strong id="tileReadout">0, 0</strong>
+          </div>
+          <div>
+            <span class="label">Facing</span>
+            <strong id="facingReadout">down</strong>
+          </div>
+          <div class="action-hud">
+            <span class="label">Action</span>
+            <strong id="actionHint">1-6 切换工具</strong>
+          </div>
+        </div>
+        <div id="gameStatusHud" class="game-status-hud" aria-label="日程状态">
+          <div class="game-status-grid">
+            <span><strong id="gameHudDay">第 1 天</strong><small id="gameHudSeason">春季 · 立春</small></span>
+            <span><strong id="gameHudTime">06:00</strong><small>时间</small></span>
+            <span><strong id="gameHudWeather">晴天</strong><small>天气</small></span>
+            <span><strong id="gameHudEnergy">30/30</strong><small>体力</small></span>
+            <span><strong id="gameHudGold">50g</strong><small>金币</small></span>
+          </div>
+          <p id="gameHudObjective">当前：整理第一块地 · 农场</p>
+        </div>
+        <div id="bottomToolHud" class="bottom-tool-hud" aria-label="底部工具栏">
+          <div id="bottomToolSlots" class="bottom-tool-slots" aria-label="工具快捷键"></div>
+          <div class="bottom-tool-status" hidden aria-hidden="true">
+            <strong id="bottomToolName">手</strong>
+            <span id="bottomToolMeta">I 背包 · Space 使用</span>
+          </div>
+        </div>
+        <div id="inventoryOverlay" class="inventory-overlay" hidden aria-label="背包">
+          <div class="inventory-overlay-header">
+            <div>
+              <span class="label">Inventory</span>
+              <h2>背包</h2>
+            </div>
+            <button id="inventoryOverlayCloseBtn" type="button" aria-label="关闭背包">关闭</button>
+          </div>
+          <div class="inventory-tool-summary" hidden aria-hidden="true">
+            <span>当前工具 <strong id="inventoryCurrentTool">手</strong></span>
+            <span>当前种子 <strong id="inventoryCurrentSeed">萝卜种子 10</strong></span>
+            <span>水量 <strong id="inventoryWaterStatus">5/5</strong></span>
+            <span>体力 <strong id="inventoryEnergyStatus">30/30</strong></span>
+          </div>
+          <div class="inventory-overlay-grid">
+            <section>
+              <div class="section-heading">
+                <h3>资产</h3>
+                <strong id="inventoryOverlayGold">50g</strong>
+              </div>
+            </section>
+            <section hidden aria-hidden="true">
+              <span class="field-label">种子</span>
+              <ul id="inventoryOverlaySeedList" class="inventory-list"></ul>
+            </section>
+            <section hidden aria-hidden="true">
+              <span class="field-label">作物</span>
+              <ul id="inventoryOverlayCropList" class="inventory-list"></ul>
+            </section>
+            <section hidden aria-hidden="true">
+              <span class="field-label">加工品</span>
+              <ul id="inventoryOverlayGoodsList" class="inventory-list"></ul>
+            </section>
+            <section hidden aria-hidden="true">
+              <span class="field-label">水产</span>
+              <ul id="inventoryOverlayFishList" class="inventory-list"></ul>
+            </section>
+            <section hidden aria-hidden="true">
+              <span class="field-label">资源</span>
+              <ul id="inventoryOverlayResourceList" class="inventory-list"></ul>
+            </section>
+            <section hidden aria-hidden="true">
+              <span class="field-label">待出货作物</span>
+              <ul id="inventoryOverlayShipmentList" class="inventory-list"></ul>
+            </section>
+            <section hidden aria-hidden="true">
+              <span class="field-label">待出货成品</span>
+              <ul id="inventoryOverlayGoodsShipmentList" class="inventory-list"></ul>
+            </section>
+            <section hidden aria-hidden="true">
+              <span class="field-label">待出货水产</span>
+              <ul id="inventoryOverlayFishShipmentList" class="inventory-list"></ul>
+            </section>
+          </div>
+        </div>
+        <div id="systemMenuOverlay" class="system-menu-overlay" hidden aria-label="系统菜单">
+          <div class="system-menu-card">
+            <div class="system-menu-header">
+              <div>
+                <span class="label">Menu</span>
+                <h2>系统菜单</h2>
+                <small id="systemMenuVersion" class="system-menu-version">v0.2.0</small>
+                <small id="systemMenuArtVersion" class="system-menu-version">美术线 art-0.2.18 · 动作 motion-0.2.7</small>
+              </div>
+              <button id="systemMenuCloseBtn" type="button" aria-label="关闭系统菜单">关闭</button>
+            </div>
+            <div class="system-menu-actions">
+              <button id="systemContinueBtn" type="button">继续游戏</button>
+              <button id="systemSaveBtn" type="button">保存</button>
+              <button id="systemLoadBtn" type="button">读取</button>
+              <button id="systemSleepBtn" type="button">睡觉到明天</button>
+              <button id="systemUnstuckBtn" type="button">脱困</button>
+              <button id="systemSoundBtn" type="button">关闭音效</button>
+              <button id="systemDevPanelBtn" type="button">显示开发面板 (F2)</button>
+            </div>
+            <section class="system-shortcuts" aria-label="快捷键说明">
+              <h3>快捷键</h3>
+              <dl>
+                <div><dt>Esc / P</dt><dd>系统菜单</dd></div>
+                <div><dt>I</dt><dd>背包</dd></div>
+                <div><dt>Q</dt><dd>任务</dd></div>
+                <div><dt>M</dt><dd>小地图</dd></div>
+                <div><dt>B</dt><dd>建造</dd></div>
+                <div><dt>Tab</dt><dd>资料</dd></div>
+                <div><dt>1-6</dt><dd>工具</dd></div>
+                <div><dt>U</dt><dd>脱困</dd></div>
+                <div><dt>C / G</dt><dd>调试层</dd></div>
+                <div><dt>F2</dt><dd>开发面板</dd></div>
+              </dl>
+            </section>
+          </div>
+        </div>
+        <div id="journalOverlay" class="journal-overlay" hidden aria-label="资料面板">
+          <div class="journal-card">
+            <div class="journal-header">
+              <div>
+                <span class="label">Journal</span>
+                <h2>资料</h2>
+                <small>Tab 打开 / 关闭，Esc 关闭</small>
+              </div>
+              <button id="journalCloseBtn" type="button" aria-label="关闭资料面板">关闭</button>
+            </div>
+            <div id="journalTabs" class="journal-tabs" role="tablist" aria-label="资料标签">
+              <button type="button" data-tab="calendar">日历</button>
+              <button type="button" data-tab="collection">图鉴</button>
+              <button type="button" data-tab="achievements">成就</button>
+              <button type="button" data-tab="album">村庄变化</button>
+              <button type="button" data-tab="alerts">邮件 / 提醒</button>
+            </div>
+            <div id="journalContent" class="journal-content" tabindex="-1"></div>
+          </div>
+        </div>
+        <div id="buildOverlay" class="build-overlay" hidden aria-label="建造面板">
+          <div class="build-overlay-card">
+            <div class="build-overlay-header">
+              <div>
+                <span class="label">Build</span>
+                <h2>建造</h2>
+                <small>B 打开 / 关闭，Esc 关闭；放置中按 B 或右键取消</small>
+              </div>
+              <button id="buildOverlayCloseBtn" type="button" aria-label="关闭建造面板">关闭</button>
+            </div>
+            <div id="buildOverlayContent" class="build-overlay-content" tabindex="-1"></div>
+          </div>
+        </div>
+        <div id="taskOverlay" class="task-overlay" hidden aria-label="任务面板">
+          <div class="task-overlay-card">
+            <div class="task-overlay-header">
+              <div>
+                <span class="label">Tasks</span>
+                <h2>任务</h2>
+                <small>Q 打开 / 关闭，Esc 关闭；只显示状态</small>
+              </div>
+              <button id="taskOverlayCloseBtn" type="button" aria-label="关闭任务面板">关闭</button>
+            </div>
+            <div id="taskOverlayTabs" class="task-overlay-tabs" role="tablist" aria-label="任务标签">
+              <button type="button" data-tab="current">当前目标</button>
+              <button type="button" data-tab="mainline">主线树</button>
+              <button type="button" data-tab="sidequests">已接支线</button>
+              <button type="button" data-tab="playthrough">通关验收</button>
+            </div>
+            <div id="taskOverlayContent" class="task-overlay-content" tabindex="-1"></div>
+          </div>
+        </div>
+        <div id="dialogBox" class="dialog-box" hidden>
+          <div class="dialog-header">
+            <h2 id="dialogTitle">对话</h2>
+            <div class="dialog-actions">
+              <button id="dialogNextBtn" type="button" hidden>继续</button>
+              <button id="dialogCloseBtn" type="button" aria-label="Close dialog">关闭</button>
+            </div>
+          </div>
+          <div id="dialogContent" class="dialog-content"></div>
+        </div>
+      </section>
+
+      <aside class="side-panel">
+        <header>
+          <div class="app-title-row">
+            <h1>Tilemap From Zero</h1>
+            <span id="appVersionBadge" class="version-badge">v0.2.0</span>
+            <span id="artVersionBadge" class="version-badge art-version-badge">美术 art-0.2.18</span>
+          </div>
+          <p>一个纯 Canvas 的 2D 瓦片地图最小系统。</p>
+        </header>
+
+        <section class="minimap-card" aria-label="Mini map" hidden aria-hidden="true">
+          <div class="section-heading">
+            <h2>小地图</h2>
+            <strong id="minimapMapName">Farm</strong>
+          </div>
+          <canvas id="minimap" class="minimap-canvas" width="280" height="180" aria-label="Mini map view"></canvas>
+          <div class="minimap-readouts">
+            <span>悬停 <strong id="minimapHoverReadout">-</strong></span>
+            <span>目标 <strong id="minimapTargetReadout">未设置</strong></span>
+          </div>
+          <button id="clearMinimapTargetBtn" type="button">清除目标</button>
+          <div class="minimap-legend" aria-hidden="true">
+            <span><i class="legend-player"></i>玩家</span>
+            <span><i class="legend-npc"></i>NPC</span>
+            <span><i class="legend-warp"></i>入口</span>
+            <span><i class="legend-service"></i>功能</span>
+            <span><i class="legend-story"></i>剧情</span>
+            <span><i class="legend-target"></i>目标</span>
+          </div>
+        </section>
+
+        <div class="controls">
+          <button id="saveBtn" type="button">保存</button>
+          <button id="loadBtn" type="button">读取</button>
+          <button id="unstuckBtn" type="button">脱困</button>
+          <select id="testSkipSelect" class="test-skip-select" aria-label="测试跳过目标">
+            <option value="spring">春季完成</option>
+            <option value="summer">夏季集市</option>
+            <option value="autumn">秋季加工</option>
+            <option value="winter">冬季年终</option>
+            <option value="shrine">土地庙最终</option>
+          </select>
+          <button id="skipTestBtn" type="button">测试跳过</button>
+          <button id="resetBtn" type="button">重置</button>
+        </div>
+        <p id="saveStatus" class="save-status">自动保存：待机</p>
+
+        <section class="save-card" aria-label="Save manager">
+          <div class="section-heading">
+            <h2>存档</h2>
+            <strong id="saveSlotLabel">槽 1</strong>
+          </div>
+          <label class="save-slot-picker">
+            <span>当前槽位</span>
+            <select id="saveSlotSelect" aria-label="Save slot">
+              <option value="slot1">槽 1</option>
+              <option value="slot2">槽 2</option>
+              <option value="slot3">槽 3</option>
+            </select>
+          </label>
+          <p id="saveSlotInfo" class="save-slot-info">槽 1：空</p>
+          <div class="save-actions">
+            <button id="exportSaveBtn" type="button">导出存档</button>
+            <button id="importSaveBtn" type="button">导入到当前槽</button>
+            <button id="clearSlotBtn" type="button">清除当前槽</button>
+          </div>
+          <textarea
+            id="saveJsonOutput"
+            class="save-json-output"
+            spellcheck="false"
+            aria-label="Save JSON"
+            placeholder="导出的存档 JSON 会出现在这里；也可以粘贴存档 JSON 后导入到当前槽"
+          ></textarea>
+        </section>
+
+        <section class="asset-audit-card" aria-label="Art asset audit">
+          <div class="section-heading">
+            <h2>美术验收</h2>
+            <strong id="assetAuditStatus">fallback</strong>
+          </div>
+          <p id="assetAuditSummary" class="asset-audit-summary">资源加载未开启，当前使用 Canvas 色块 fallback。</p>
+          <div class="asset-audit-actions">
+            <button id="refreshAssetAuditBtn" type="button">扫描当前地图</button>
+            <button id="copyAssetManifestBtn" type="button">复制资源清单</button>
+          </div>
+          <ul id="assetAuditList" class="asset-audit-list"></ul>
+        </section>
+
+        <section class="day-card" aria-label="Day status" hidden aria-hidden="true">
+          <div class="section-heading">
+            <h2>日程</h2>
+            <strong id="dayReadout" hidden aria-hidden="true">第 1 天</strong>
+          </div>
+          <div class="day-stats" hidden aria-hidden="true">
+            <span>时间 <strong id="timeReadout">06:00</strong></span>
+            <span>体力 <strong id="energyReadout">30/30</strong></span>
+            <span>天气 <strong id="weatherReadout">晴天</strong></span>
+            <span>明天 <strong id="tomorrowWeatherReadout">晴天</strong></span>
+          </div>
+          <button id="sleepBtn" type="button">睡觉到明天</button>
+        </section>
+
+        <section class="calendar-card" aria-label="Calendar" hidden aria-hidden="true">
+          <div class="section-heading">
+            <h2>日历</h2>
+            <strong id="seasonReadout">春季</strong>
+          </div>
+          <p id="seasonDayReadout" class="calendar-summary">立春第 1/5 天 · 本季第 1/30 天 · 年度第 1/120 天</p>
+          <p id="eventReadout" class="calendar-summary">今日无事件</p>
+          <div id="calendarGrid" class="calendar-grid" aria-label="Season calendar"></div>
+          <ul id="eventList" class="event-list" aria-label="Season events"></ul>
+          <div>
+            <span class="field-label">当季作物</span>
+            <ul id="seasonCropList" class="season-crop-list"></ul>
+          </div>
+        </section>
+
+        <section class="story-card" aria-label="Main story" hidden aria-hidden="true">
+          <div class="section-heading">
+            <h2>年度主线</h2>
+            <strong id="storyPhase">春季</strong>
+          </div>
+          <p id="storyProgress" class="story-summary">返乡第一块地</p>
+          <ul id="storyObjectiveList" class="story-objective-list"></ul>
+          <p id="storyTargetHint" class="story-target">去哪里：农场 · 老宅前草地。</p>
+          <p id="storyNextHint" class="story-next">先整理土地，种出第一批作物。</p>
+        </section>
+
+        <section class="task-tree-card" aria-label="Task tree" hidden aria-hidden="true">
+          <div class="section-heading">
+            <h2>任务树</h2>
+            <strong id="taskTreeProgress">0/0</strong>
+          </div>
+          <ul id="taskTreeList" class="task-tree-list"></ul>
+        </section>
+
+        <section class="check-card" aria-label="First year check" hidden aria-hidden="true">
+          <div class="section-heading">
+            <h2>通关检查</h2>
+            <strong id="firstYearCheckProgress">0/7</strong>
+          </div>
+          <p id="firstYearCheckSummary" class="check-summary">检查第一年关键路径。</p>
+          <ul id="firstYearCheckList" class="check-list"></ul>
+        </section>
+
+        <section class="playthrough-card" aria-label="Playthrough validation" hidden aria-hidden="true">
+          <div class="section-heading">
+            <h2>通关验收</h2>
+            <strong id="playthroughCheckProgress">0/5</strong>
+          </div>
+          <p id="playthroughCheckSummary" class="playthrough-summary">按测试节点验收一周目可玩路径。</p>
+          <ul id="playthroughCheckpointList" class="playthrough-list"></ul>
+        </section>
+
+        <section class="guide-card" aria-label="Chapter guide" hidden aria-hidden="true">
+          <div class="section-heading">
+            <h2>章节引导</h2>
+            <strong id="guideProgress">0/9</strong>
+          </div>
+          <p id="guideCurrentStep" class="guide-summary">整理第一块地</p>
+          <ul id="guideStepList" class="guide-step-list"></ul>
+          <p id="guideHint" class="guide-hint">切换锄头，在草地上按 Space。</p>
+        </section>
+
+        <section class="alert-card" aria-label="Notices" hidden aria-hidden="true">
+          <div class="section-heading">
+            <h2>提醒</h2>
+            <strong id="alertCount">0</strong>
+          </div>
+          <ul id="alertList" class="alert-list"></ul>
+        </section>
+
+        <section class="dynamic-card" aria-label="Dynamic state" hidden aria-hidden="true">
+          <div class="section-heading">
+            <h2>动态状态</h2>
+            <strong id="dynamicObjectCount">0</strong>
+          </div>
+          <div class="dynamic-summary">
+            <span>作物 <strong id="dynamicCropStatus">0</strong></span>
+            <span>设施 <strong id="dynamicMachineStatus">0</strong></span>
+          </div>
+          <ul id="dynamicObjectList" class="dynamic-list"></ul>
+        </section>
+
+        <section class="score-card" aria-label="Farm rating" hidden aria-hidden="true">
+          <div class="section-heading">
+            <h2>农场评价</h2>
+            <strong id="farmScoreValue">0/100</strong>
+          </div>
+          <div class="score-meter" aria-hidden="true">
+            <span id="farmScoreMeter"></span>
+          </div>
+          <p id="farmScoreRank" class="score-rank">新手农场</p>
+          <ul id="farmScoreList" class="score-list"></ul>
+          <p id="farmScoreNextGoal" class="score-next">下一步：播种并收获第一批作物。</p>
+        </section>
+
+        <section class="build-card" aria-label="Build placement" hidden aria-hidden="true">
+          <div class="section-heading">
+            <h2>建造</h2>
+            <strong id="buildModeStatus">关闭</strong>
+          </div>
+          <label class="build-picker">
+            <span>当前设施</span>
+            <select id="buildItemSelect" aria-label="Selected build item"></select>
+          </label>
+          <p id="buildItemInfo" class="build-item-info">选择建造对象查看价格和说明。</p>
+          <div class="build-actions">
+            <button id="buildModeBtn" type="button">放置模式</button>
+            <button id="buildShopBtn" type="button">建造商店</button>
+          </div>
+          <div class="build-quick-actions">
+            <button id="quickBuyBuildOneBtn" type="button">买 1</button>
+            <button id="quickBuyBuildFiveBtn" type="button">买 5</button>
+          </div>
+          <ul id="buildInventoryList" class="inventory-list"></ul>
+          <div class="dynamic-summary build-summary">
+            <span>当前地图 <strong id="buildCurrentMapCount">0</strong></span>
+            <span>全部 <strong id="buildPlacedCount">0</strong></span>
+          </div>
+          <ul id="buildPlacedList" class="dynamic-list build-placed-list"></ul>
+        </section>
+
+        <section class="tool-card" aria-label="Tool bar" hidden aria-hidden="true">
+          <div class="section-heading">
+            <h2>工具</h2>
+            <strong id="currentTool">手</strong>
+          </div>
+          <div id="toolButtons" class="tool-buttons" aria-label="Tool shortcuts"></div>
+          <label class="seed-picker">
+            <span>当前种子</span>
+            <select id="seedSelect" aria-label="Selected seed"></select>
+          </label>
+          <div class="inventory-row">
+            <span>金币 <strong id="goldCount">50g</strong></span>
+            <span>种子 <strong id="seedCount">10</strong></span>
+            <span>收获 <strong id="cropCount">0</strong></span>
+            <span>出货 <strong id="shipmentCount">0</strong></span>
+            <span>水量 <strong id="waterCount">5/5</strong></span>
+            <span>能力 <strong id="abilityCount">体力30</strong></span>
+          </div>
+        </section>
+
+        <section class="feedback-card" aria-label="Feedback settings" hidden aria-hidden="true">
+          <div class="section-heading">
+            <h2>反馈</h2>
+            <strong id="effectStatus">视觉开启</strong>
+          </div>
+          <label class="toggle-row">
+            <input id="soundToggle" type="checkbox" checked />
+            <span>操作音效</span>
+          </label>
+          <p class="feedback-note">工具、交易、任务和传送会给出短音效与轻动画。</p>
+        </section>
+
+        <section class="inventory-card" aria-label="Inventory" hidden aria-hidden="true">
+          <div class="section-heading">
+            <h2>背包</h2>
+            <strong id="inventoryGold">50g</strong>
+          </div>
+          <div>
+            <span class="field-label">种子</span>
+            <ul id="seedInventoryList" class="inventory-list"></ul>
+          </div>
+          <div>
+            <span class="field-label">作物</span>
+            <ul id="cropInventoryList" class="inventory-list"></ul>
+          </div>
+          <div>
+            <span class="field-label">加工品</span>
+            <ul id="goodsInventoryList" class="inventory-list"></ul>
+          </div>
+          <div>
+            <span class="field-label">水产</span>
+            <ul id="fishInventoryList" class="inventory-list"></ul>
+          </div>
+          <div>
+            <span class="field-label">资源</span>
+            <ul id="resourceInventoryList" class="inventory-list"></ul>
+          </div>
+          <div>
+            <span class="field-label">待出货</span>
+            <ul id="shipmentInventoryList" class="inventory-list"></ul>
+          </div>
+          <div>
+            <span class="field-label">待出货成品</span>
+            <ul id="goodsShipmentInventoryList" class="inventory-list"></ul>
+          </div>
+          <div>
+            <span class="field-label">待出货水产</span>
+            <ul id="fishShipmentInventoryList" class="inventory-list"></ul>
+          </div>
+        </section>
+
+        <section class="collection-card" aria-label="Collection" hidden aria-hidden="true">
+          <div class="section-heading">
+            <h2>图鉴</h2>
+            <strong id="collectionProgress">0/6</strong>
+          </div>
+          <ul id="collectionList" class="collection-list"></ul>
+        </section>
+
+        <section class="achievement-card" aria-label="Achievements" hidden aria-hidden="true">
+          <div class="section-heading">
+            <h2>成就</h2>
+            <strong id="achievementCount">0/6</strong>
+          </div>
+          <ul id="achievementList" class="achievement-list"></ul>
+        </section>
+
+        <section class="album-card" aria-label="Village album" hidden aria-hidden="true">
+          <div class="section-heading">
+            <h2>村庄变化</h2>
+            <strong id="albumProgress">0/14</strong>
+          </div>
+          <ul id="albumList" class="album-list"></ul>
+        </section>
+
+        <section class="quest-card" aria-label="Quest" hidden aria-hidden="true">
+          <div class="section-heading">
+            <h2>任务</h2>
+            <strong>多个目标</strong>
+          </div>
+          <div id="questList" class="quest-list"></div>
+        </section>
+
+        <section class="order-card" aria-label="Daily order" hidden aria-hidden="true">
+          <div class="section-heading">
+            <h2>订单</h2>
+            <strong id="orderStatus">进行中</strong>
+          </div>
+          <div>
+            <span class="field-label">今日目标</span>
+            <p id="orderTitle">出货作物</p>
+          </div>
+          <div class="order-progress">
+            <span>进度 <strong id="orderProgress">0/2</strong></span>
+            <span>奖励 <strong id="orderReward">+20g</strong></span>
+          </div>
+        </section>
+
+        <section class="upgrade-card" aria-label="Farm upgrades" hidden aria-hidden="true">
+          <div class="section-heading">
+            <h2>扩建</h2>
+            <strong id="upgradeCount">0/3</strong>
+          </div>
+          <ul id="upgradeList" class="upgrade-list"></ul>
+        </section>
+
+        <section class="editor-card" aria-label="Map editor">
+          <div class="section-heading">
+            <h2>编辑器</h2>
+            <label class="toggle-row">
+              <input id="editorToggle" type="checkbox" />
+              <span>编辑模式</span>
+            </label>
+          </div>
+          <div class="editor-history">
+            <button id="editorUndoBtn" type="button" disabled>撤销</button>
+            <button id="editorRedoBtn" type="button" disabled>重做</button>
+            <span id="editorHistoryStatus">无可撤销操作</span>
+          </div>
+
+          <div class="field-grid">
+            <label>
+              <span>图层</span>
+              <select id="layerSelect">
+                <option value="ground">ground</option>
+                <option value="buildings">buildings</option>
+                <option value="front">front</option>
+                <option value="collision">collision</option>
+                <option value="objects">objects</option>
+              </select>
+            </label>
+
+            <label>
+              <span>工具</span>
+              <select id="toolSelect">
+                <option value="select">选择</option>
+                <option value="paint">画笔</option>
+                <option value="erase">橡皮</option>
+              </select>
+            </label>
+          </div>
+
+          <div>
+            <span class="field-label">瓦片</span>
+            <div id="tilePalette" class="tile-palette" aria-label="Tile palette"></div>
+          </div>
+
+          <label class="object-picker">
+            <span>对象</span>
+            <select id="objectSelect" aria-label="Object type">
+              <option value="sign">sign</option>
+              <option value="chest">chest</option>
+              <option value="seedShop">seedShop</option>
+              <option value="shop">shop</option>
+              <option value="shippingBin">shippingBin</option>
+              <option value="kitchen">kitchen</option>
+              <option value="processor">processor</option>
+              <option value="dryer">dryer</option>
+              <option value="flowerBox">flowerBox</option>
+              <option value="gardenLamp">gardenLamp</option>
+              <option value="bench">bench</option>
+              <option value="fence">fence</option>
+              <option value="marketStall">marketStall</option>
+              <option value="basketPoint">basketPoint</option>
+              <option value="tastingTable">tastingTable</option>
+              <option value="ecommerceDesk">ecommerceDesk</option>
+              <option value="cooperativeDesk">cooperativeDesk</option>
+              <option value="tourismDesk">tourismDesk</option>
+              <option value="brandDesk">brandDesk</option>
+              <option value="irrigationPump">irrigationPump</option>
+              <option value="landShrine">landShrine</option>
+              <option value="issueBoard">issueBoard</option>
+              <option value="communityFacility">communityFacility</option>
+              <option value="directionSign">directionSign</option>
+              <option value="ruin">ruin</option>
+              <option value="warp">warp</option>
+              <option value="bed">bed</option>
+              <option value="mailbox">mailbox</option>
+            </select>
+          </label>
+          <p id="objectReadout" class="editor-readout">对象：sign @ -</p>
+          <div class="object-fields">
+            <label>
+              <span>文字 / 名称</span>
+              <input id="objectTextInput" type="text" placeholder="牌子文字或对象名称" />
+            </label>
+            <label>
+              <span>箱子 / 路牌内容</span>
+              <input id="objectItemsInput" type="text" placeholder="wood, stone 或 北：山路, 东：村庄" />
+            </label>
+            <div class="field-grid">
+              <label>
+                <span>目标地图</span>
+                <select id="warpTargetMapSelect">
+                  <option value="farm">farm</option>
+                  <option value="house">house</option>
+                  <option value="village">village</option>
+                  <option value="mountain">mountain</option>
+                </select>
+              </label>
+              <label>
+                <span>目标坐标</span>
+                <input id="warpTargetInput" type="text" placeholder="7, 8" />
+              </label>
+            </div>
+            <button id="applyObjectBtn" type="button">更新对象</button>
+          </div>
+
+          <div class="export-controls">
+            <button id="exportBtn" type="button">导出 JSON</button>
+            <button id="importBtn" type="button">导入 JSON</button>
+            <button id="resetMapBtn" type="button">重置当前地图</button>
+            <button id="copyJsonBtn" type="button">复制 JSON</button>
+          </div>
+
+          <textarea
+            id="mapJsonOutput"
+            spellcheck="false"
+            aria-label="Exported map JSON"
+            placeholder="导出的地图 JSON 会出现在这里；也可以粘贴地图 JSON 后点击导入"
+          ></textarea>
+        </section>
+
+        <dl class="system-list" hidden aria-hidden="true">
+          <div>
+            <dt>移动</dt>
+            <dd>点击画面后 WASD / 方向键，按住 Shift 跑步</dd>
+          </div>
+          <div>
+            <dt>交互</dt>
+            <dd>E / Enter 读牌子、开箱、商店、扩建</dd>
+          </div>
+          <div>
+            <dt>工具</dt>
+            <dd>1-6 切换，Space 使用当前工具</dd>
+          </div>
+          <div>
+            <dt>任务</dt>
+            <dd>Q 打开任务面板，Esc 关闭</dd>
+          </div>
+          <div>
+            <dt>背包</dt>
+            <dd>I 打开资产面板，只显示已有物品</dd>
+          </div>
+          <div>
+            <dt>小地图</dt>
+            <dd>M 显示或隐藏游戏内小地图</dd>
+          </div>
+          <div>
+            <dt>建造</dt>
+            <dd>B 进入或退出放置模式</dd>
+          </div>
+          <div>
+            <dt>日程</dt>
+            <dd>工具消耗体力，睡觉后按每日上限恢复</dd>
+          </div>
+          <div>
+            <dt>成长</dt>
+            <dd>支线奖励可提升体力、工具、水壶和种子解锁</dd>
+          </div>
+          <div>
+            <dt>调试</dt>
+            <dd>C 显示碰撞，G 显示网格</dd>
+          </div>
+          <div>
+            <dt>编辑</dt>
+            <dd>Cmd/Ctrl+Z 撤销，Shift+Cmd/Ctrl+Z 重做</dd>
+          </div>
+          <div>
+            <dt>脱困</dt>
+            <dd>按钮或 U 回到当前地图安全点</dd>
+          </div>
+        </dl>
+
+        <section class="log-card" aria-label="Event log">
+          <h2>事件</h2>
+          <ol id="log"></ol>
+        </section>
+      </aside>
+    </main>
+
+    <script defer src="./src/main.js?v=0.2.0-art-0.2.18-motion-0.2.7-resource-art-0.2"></script>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "sheet_size": true,
+  "sheet_divisible_by_32": true,
+  "preview_exists": true,
+  "tile_count": true,
+  "metadata_exists": true,
+  "tiled_map_exists": true,
+  "tiled_tileset_exists": true
+}

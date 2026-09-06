@@ -1,0 +1,81 @@
+{
+  "run_id": "run_001_p0_baseline",
+  "status": "started",
+  "assets": [
+    {
+      "asset_id": "terrain_grass_01",
+      "file_path": "assets/pixel/terrain/terrain_grass_01.png",
+      "layer": "Terrain",
+      "priority": "P0",
+      "tile_size": "16x16",
+      "sprite_size": "16x16",
+      "origin": "top_left",
+      "pivot": "top_left",
+      "y_sort_point": null,
+      "grid_footprint": "1x1",
+      "collision_rect": null,
+      "interaction_rect": null,
+      "tags": ["farm", "terrain", "chapter_1"]
+    },
+    {
+      "asset_id": "terrain_soil_dry_01",
+      "file_path": "assets/pixel/terrain/terrain_soil_dry_01.png",
+      "layer": "Terrain",
+      "priority": "P0",
+      "tile_size": "16x16",
+      "sprite_size": "16x16",
+      "origin": "top_left",
+      "pivot": "top_left",
+      "y_sort_point": null,
+      "grid_footprint": "1x1",
+      "collision_rect": null,
+      "interaction_rect": null,
+      "tags": ["farm", "terrain", "soil", "chapter_1"]
+    },
+    {
+      "asset_id": "char_player_walk_down",
+      "file_path": "assets/pixel/characters/char_player_walk_down.png",
+      "layer": "YSortObjects",
+      "priority": "P0",
+      "tile_size": null,
+      "sprite_size": "16x32",
+      "origin": "feet_center",
+      "pivot": "feet_center",
+      "y_sort_point": "feet_center",
+      "grid_footprint": "1x1",
+      "collision_rect": "x2 y24 w12 h8",
+      "interaction_rect": "x-4 y16 w24 h20",
+      "tags": ["player", "character", "chapter_1"]
+    },
+    {
+      "asset_id": "object_shipping_box_v1",
+      "file_path": "assets/pixel/y_sort/object_shipping_box_v1.png",
+      "layer": "YSortObjects",
+      "priority": "P0",
+      "tile_size": null,
+      "sprite_size": "16x24",
+      "origin": "bottom_center",
+      "pivot": "bottom_center",
+      "y_sort_point": "bottom_center",
+      "grid_footprint": "1x1",
+      "collision_rect": "x2 y12 w12 h8",
+      "interaction_rect": "x-4 y-4 w24 h28",
+      "tags": ["farm", "sell_box", "chapter_1"]
+    },
+    {
+      "asset_id": "interaction_notice_board_empty_v1",
+      "file_path": "assets/pixel/interaction/interaction_notice_board_empty_v1.png",
+      "layer": "Interaction",
+      "priority": "P0",
+      "tile_size": null,
+      "sprite_size": "32x48",
+      "origin": "bottom_center",
+      "pivot": "bottom_center",
+      "y_sort_point": "bottom_center",
+      "grid_footprint": "2x1",
+      "collision_rect": "x4 y32 w24 h8",
+      "interaction_rect": "x-8 y8 w48 h44",
+      "tags": ["village", "notice_board", "chapter_1", "empty"]
+    }
+  ]
+}

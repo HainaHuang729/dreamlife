@@ -1,0 +1,69 @@
+{
+  "run_id": "run_002_p0_strict_grid",
+  "status": "generated",
+  "assets": [
+    {
+      "asset_id": "terrain_p0_strict_tiles",
+      "file_path": "assets/pixel/terrain/terrain_p0_strict_tiles.png",
+      "layer": "Terrain",
+      "priority": "P0",
+      "sprite_size": "96x16",
+      "tile_size": "16x16",
+      "tiles": [
+        "grass",
+        "grass_var",
+        "dirt_path",
+        "dirt_path_edge",
+        "soil_dry",
+        "soil_wet"
+      ]
+    },
+    {
+      "asset_id": "char_player_down_p0",
+      "file_path": "assets/pixel/characters/char_player_down_p0.png",
+      "layer": "YSortObjects",
+      "priority": "P0",
+      "sprite_size": "80x32",
+      "frame_size": "16x32",
+      "frames": 5,
+      "pivot": "feet_center",
+      "collision_rect": "x2 y24 w12 h8"
+    },
+    {
+      "asset_id": "object_shipping_box_v1",
+      "file_path": "assets/pixel/y_sort/object_shipping_box_v1.png",
+      "layer": "YSortObjects",
+      "priority": "P0",
+      "sprite_size": "16x24",
+      "pivot": "bottom_center",
+      "collision_rect": "x2 y12 w12 h8",
+      "interaction_rect": "x-4 y-4 w24 h28"
+    },
+    {
+      "asset_id": "interaction_notice_board_empty_v1",
+      "file_path": "assets/pixel/interaction/interaction_notice_board_empty_v1.png",
+      "layer": "Interaction",
+      "priority": "P0",
+      "sprite_size": "32x48",
+      "pivot": "bottom_center",
+      "collision_rect": "x4 y32 w24 h8",
+      "interaction_rect": "x-8 y8 w48 h44"
+    },
+    {
+      "asset_id": "water_pickup_point_v1",
+      "file_path": "assets/pixel/water/water_pickup_point_v1.png",
+      "layer": "Water",
+      "priority": "P0",
+      "sprite_size": "32x32",
+      "pivot": "bottom_center",
+      "interaction_rect": "x0 y0 w32 h32"
+    },
+    {
+      "asset_id": "ui_toolbar_p0",
+      "file_path": "assets/pixel/ui/ui_toolbar_p0.png",
+      "layer": "UI",
+      "priority": "P0",
+      "sprite_size": "96x20"
+    }
+  ]
+}

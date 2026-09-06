@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>晨谷农场主视角样张</title>
+    <link rel="stylesheet" href="engine-visual-demo.css">
+  </head>
+  <body>
+    <main class="page">
+      <header class="toolbar" aria-label="演示控制">
+        <div>
+          <h1>晨谷村主视角原型</h1>
+          <p>斜俯视 2D + Y-sort 遮挡。WASD / 方向键控制人物在村子里走动。</p>
+        </div>
+        <div class="controls">
+          <button class="map-button active" type="button" data-map="village">村子</button>
+          <button class="map-button" type="button" data-map="home">我家</button>
+          <button id="zoomOut" class="icon-button" type="button" aria-label="缩小视角">−</button>
+          <input id="zoomControl" class="zoom-slider" type="range" min="0.75" max="1.65" step="0.05" value="1" aria-label="视角缩放">
+          <button id="zoomIn" class="icon-button" type="button" aria-label="放大视角">+</button>
+          <button id="motionToggle" class="toggle" type="button" aria-pressed="true">动画开</button>
+        </div>
+      </header>
+
+      <section class="locked-view" aria-label="主视角锁定样张">
+        <div class="locked-stage">
+          <canvas id="lockedView" width="960" height="640" aria-label="斜俯视 2D 与 Y-sort 遮挡样张"></canvas>
+        </div>
+        <div class="locked-copy">
+          <h2>村子地图：斜俯视 2D + Y-sort 遮挡</h2>
+          <p>人物、宠物、建筑、公告栏、快递点和树都用脚底或物体底边作为 Y-sort 锚点。走到物体上方会被挡住，走到下方会盖住物体。</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="engine-visual-demo.js"></script>
+  </body>
+</html>

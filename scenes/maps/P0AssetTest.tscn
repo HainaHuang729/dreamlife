@@ -1,0 +1,117 @@
+[gd_scene load_steps=7 format=3 uid="uid://p0_asset_test"]
+
+[ext_resource type="Texture2D" path="res://assets/pixel/terrain/terrain_p0_strict_tiles.png" id="1_terrain"]
+[ext_resource type="Texture2D" path="res://assets/pixel/characters/char_player_down_p0.png" id="2_player"]
+[ext_resource type="Texture2D" path="res://assets/pixel/y_sort/object_shipping_box_v1.png" id="3_box"]
+[ext_resource type="Texture2D" path="res://assets/pixel/interaction/interaction_notice_board_empty_v1.png" id="4_notice"]
+[ext_resource type="Texture2D" path="res://assets/pixel/water/water_pickup_point_v1.png" id="5_water"]
+[ext_resource type="Texture2D" path="res://assets/pixel/ui/ui_toolbar_p0.png" id="6_toolbar"]
+
+[node name="P0AssetTest" type="Node2D"]
+
+[node name="Tiles" type="Node2D" parent="."]
+position = Vector2(64, 64)
+
+[node name="Grass" type="Sprite2D" parent="Tiles"]
+position = Vector2(0, 0)
+scale = Vector2(4, 4)
+texture = ExtResource("1_terrain")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="GrassVar" type="Sprite2D" parent="Tiles"]
+position = Vector2(72, 0)
+scale = Vector2(4, 4)
+texture = ExtResource("1_terrain")
+region_enabled = true
+region_rect = Rect2(16, 0, 16, 16)
+
+[node name="DirtPath" type="Sprite2D" parent="Tiles"]
+position = Vector2(144, 0)
+scale = Vector2(4, 4)
+texture = ExtResource("1_terrain")
+region_enabled = true
+region_rect = Rect2(32, 0, 16, 16)
+
+[node name="DirtPathEdge" type="Sprite2D" parent="Tiles"]
+position = Vector2(216, 0)
+scale = Vector2(4, 4)
+texture = ExtResource("1_terrain")
+region_enabled = true
+region_rect = Rect2(48, 0, 16, 16)
+
+[node name="SoilDry" type="Sprite2D" parent="Tiles"]
+position = Vector2(288, 0)
+scale = Vector2(4, 4)
+texture = ExtResource("1_terrain")
+region_enabled = true
+region_rect = Rect2(64, 0, 16, 16)
+
+[node name="SoilWet" type="Sprite2D" parent="Tiles"]
+position = Vector2(360, 0)
+scale = Vector2(4, 4)
+texture = ExtResource("1_terrain")
+region_enabled = true
+region_rect = Rect2(80, 0, 16, 16)
+
+[node name="PlayerFrames" type="Node2D" parent="."]
+position = Vector2(64, 180)
+
+[node name="PlayerIdleDown" type="Sprite2D" parent="PlayerFrames"]
+position = Vector2(0, 0)
+scale = Vector2(4, 4)
+texture = ExtResource("2_player")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 32)
+
+[node name="PlayerWalkDown1" type="Sprite2D" parent="PlayerFrames"]
+position = Vector2(72, 0)
+scale = Vector2(4, 4)
+texture = ExtResource("2_player")
+region_enabled = true
+region_rect = Rect2(16, 0, 16, 32)
+
+[node name="PlayerWalkDown2" type="Sprite2D" parent="PlayerFrames"]
+position = Vector2(144, 0)
+scale = Vector2(4, 4)
+texture = ExtResource("2_player")
+region_enabled = true
+region_rect = Rect2(32, 0, 16, 32)
+
+[node name="PlayerWalkDown3" type="Sprite2D" parent="PlayerFrames"]
+position = Vector2(216, 0)
+scale = Vector2(4, 4)
+texture = ExtResource("2_player")
+region_enabled = true
+region_rect = Rect2(48, 0, 16, 32)
+
+[node name="PlayerWalkDown4" type="Sprite2D" parent="PlayerFrames"]
+position = Vector2(288, 0)
+scale = Vector2(4, 4)
+texture = ExtResource("2_player")
+region_enabled = true
+region_rect = Rect2(64, 0, 16, 32)
+
+[node name="Interactables" type="Node2D" parent="."]
+position = Vector2(64, 360)
+
+[node name="ShippingBox" type="Sprite2D" parent="Interactables"]
+position = Vector2(0, 0)
+scale = Vector2(4, 4)
+texture = ExtResource("3_box")
+
+[node name="NoticeBoard" type="Sprite2D" parent="Interactables"]
+position = Vector2(120, 0)
+scale = Vector2(4, 4)
+texture = ExtResource("4_notice")
+
+[node name="WaterPickup" type="Sprite2D" parent="Interactables"]
+position = Vector2(280, 0)
+scale = Vector2(4, 4)
+texture = ExtResource("5_water")
+
+[node name="Toolbar" type="Sprite2D" parent="."]
+position = Vector2(256, 620)
+scale = Vector2(4, 4)
+texture = ExtResource("6_toolbar")
+

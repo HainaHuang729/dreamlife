@@ -1,0 +1,273 @@
+{
+  "type": "tileset",
+  "version": "1.10",
+  "tiledversion": "1.10.2",
+  "name": "building_tiles_32_v1",
+  "tilewidth": 32,
+  "tileheight": 32,
+  "spacing": 0,
+  "margin": 0,
+  "columns": 8,
+  "tilecount": 64,
+  "image": "../../assets/pixel/buildings/building_tiles_32_v1.png",
+  "imagewidth": 256,
+  "imageheight": 256,
+  "tiles": [
+    {
+      "id": 0,
+      "type": "roof_red_tl"
+    },
+    {
+      "id": 1,
+      "type": "roof_red_top"
+    },
+    {
+      "id": 2,
+      "type": "roof_red_top_var"
+    },
+    {
+      "id": 3,
+      "type": "roof_red_tr"
+    },
+    {
+      "id": 4,
+      "type": "ridge_left"
+    },
+    {
+      "id": 5,
+      "type": "ridge_mid"
+    },
+    {
+      "id": 6,
+      "type": "ridge_right"
+    },
+    {
+      "id": 7,
+      "type": "chimney"
+    },
+    {
+      "id": 8,
+      "type": "roof_red_left"
+    },
+    {
+      "id": 9,
+      "type": "roof_red_fill"
+    },
+    {
+      "id": 10,
+      "type": "roof_red_fill_var"
+    },
+    {
+      "id": 11,
+      "type": "roof_red_right"
+    },
+    {
+      "id": 12,
+      "type": "eave_left"
+    },
+    {
+      "id": 13,
+      "type": "eave_mid"
+    },
+    {
+      "id": 14,
+      "type": "eave_right"
+    },
+    {
+      "id": 15,
+      "type": "shadow_blob"
+    },
+    {
+      "id": 16,
+      "type": "wood_top_left"
+    },
+    {
+      "id": 17,
+      "type": "wood_top"
+    },
+    {
+      "id": 18,
+      "type": "wood_top_var"
+    },
+    {
+      "id": 19,
+      "type": "wood_top_right"
+    },
+    {
+      "id": 20,
+      "type": "plaster_top"
+    },
+    {
+      "id": 21,
+      "type": "plaster_mid"
+    },
+    {
+      "id": 22,
+      "type": "stone_foundation"
+    },
+    {
+      "id": 23,
+      "type": "stair"
+    },
+    {
+      "id": 24,
+      "type": "wood_left"
+    },
+    {
+      "id": 25,
+      "type": "wood_fill"
+    },
+    {
+      "id": 26,
+      "type": "wood_fill_var"
+    },
+    {
+      "id": 27,
+      "type": "wood_right"
+    },
+    {
+      "id": 28,
+      "type": "plaster_left"
+    },
+    {
+      "id": 29,
+      "type": "plaster_right"
+    },
+    {
+      "id": 30,
+      "type": "stone_left"
+    },
+    {
+      "id": 31,
+      "type": "stone_right"
+    },
+    {
+      "id": 32,
+      "type": "wood_bottom_left"
+    },
+    {
+      "id": 33,
+      "type": "wood_bottom"
+    },
+    {
+      "id": 34,
+      "type": "single_door"
+    },
+    {
+      "id": 35,
+      "type": "wood_bottom_right"
+    },
+    {
+      "id": 36,
+      "type": "small_window"
+    },
+    {
+      "id": 37,
+      "type": "shop_window_left"
+    },
+    {
+      "id": 38,
+      "type": "shop_window_right"
+    },
+    {
+      "id": 39,
+      "type": "blank_sign"
+    },
+    {
+      "id": 40,
+      "type": "barn_left"
+    },
+    {
+      "id": 41,
+      "type": "barn_fill"
+    },
+    {
+      "id": 42,
+      "type": "barn_right"
+    },
+    {
+      "id": 43,
+      "type": "barn_door_left"
+    },
+    {
+      "id": 44,
+      "type": "barn_door_right"
+    },
+    {
+      "id": 45,
+      "type": "hayloft_window"
+    },
+    {
+      "id": 46,
+      "type": "awning_left"
+    },
+    {
+      "id": 47,
+      "type": "awning_right"
+    },
+    {
+      "id": 48,
+      "type": "porch_left"
+    },
+    {
+      "id": 49,
+      "type": "porch_mid"
+    },
+    {
+      "id": 50,
+      "type": "porch_right"
+    },
+    {
+      "id": 51,
+      "type": "fence"
+    },
+    {
+      "id": 52,
+      "type": "crate"
+    },
+    {
+      "id": 53,
+      "type": "barrel"
+    },
+    {
+      "id": 54,
+      "type": "flower_box"
+    },
+    {
+      "id": 55,
+      "type": "lamp"
+    },
+    {
+      "id": 56,
+      "type": "grass_pad"
+    },
+    {
+      "id": 57,
+      "type": "shadow_left"
+    },
+    {
+      "id": 58,
+      "type": "shadow_mid"
+    },
+    {
+      "id": 59,
+      "type": "shadow_right"
+    },
+    {
+      "id": 60,
+      "type": "roof_blue_top"
+    },
+    {
+      "id": 61,
+      "type": "roof_blue_fill"
+    },
+    {
+      "id": 62,
+      "type": "roof_blue_eave"
+    },
+    {
+      "id": 63,
+      "type": "empty"
+    }
+  ]
+}

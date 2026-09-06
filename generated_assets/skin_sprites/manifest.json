@@ -1,0 +1,119 @@
+{
+  "frame_duration_ms": 160,
+  "skins": [
+    {
+      "name": "bath_towel",
+      "frame_count": 8,
+      "frame_size": [
+        255,
+        888
+      ],
+      "sheet": "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/bath_towel/bath_towel_idle_sheet.png",
+      "frames": [
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/bath_towel/bath_towel_idle_00.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/bath_towel/bath_towel_idle_01.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/bath_towel/bath_towel_idle_02.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/bath_towel/bath_towel_idle_03.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/bath_towel/bath_towel_idle_04.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/bath_towel/bath_towel_idle_05.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/bath_towel/bath_towel_idle_06.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/bath_towel/bath_towel_idle_07.png"
+      ]
+    },
+    {
+      "name": "camisole_skirt",
+      "frame_count": 8,
+      "frame_size": [
+        263,
+        879
+      ],
+      "sheet": "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/camisole_skirt/camisole_skirt_idle_sheet.png",
+      "frames": [
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/camisole_skirt/camisole_skirt_idle_00.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/camisole_skirt/camisole_skirt_idle_01.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/camisole_skirt/camisole_skirt_idle_02.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/camisole_skirt/camisole_skirt_idle_03.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/camisole_skirt/camisole_skirt_idle_04.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/camisole_skirt/camisole_skirt_idle_05.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/camisole_skirt/camisole_skirt_idle_06.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/camisole_skirt/camisole_skirt_idle_07.png"
+      ]
+    },
+    {
+      "name": "floral_dress",
+      "frame_count": 8,
+      "frame_size": [
+        276,
+        875
+      ],
+      "sheet": "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/floral_dress/floral_dress_idle_sheet.png",
+      "frames": [
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/floral_dress/floral_dress_idle_00.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/floral_dress/floral_dress_idle_01.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/floral_dress/floral_dress_idle_02.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/floral_dress/floral_dress_idle_03.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/floral_dress/floral_dress_idle_04.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/floral_dress/floral_dress_idle_05.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/floral_dress/floral_dress_idle_06.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/floral_dress/floral_dress_idle_07.png"
+      ]
+    },
+    {
+      "name": "sport_swimsuit",
+      "frame_count": 8,
+      "frame_size": [
+        268,
+        876
+      ],
+      "sheet": "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/sport_swimsuit/sport_swimsuit_idle_sheet.png",
+      "frames": [
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/sport_swimsuit/sport_swimsuit_idle_00.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/sport_swimsuit/sport_swimsuit_idle_01.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/sport_swimsuit/sport_swimsuit_idle_02.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/sport_swimsuit/sport_swimsuit_idle_03.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/sport_swimsuit/sport_swimsuit_idle_04.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/sport_swimsuit/sport_swimsuit_idle_05.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/sport_swimsuit/sport_swimsuit_idle_06.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/sport_swimsuit/sport_swimsuit_idle_07.png"
+      ]
+    },
+    {
+      "name": "white_t_denim_shorts",
+      "frame_count": 8,
+      "frame_size": [
+        292,
+        878
+      ],
+      "sheet": "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/white_t_denim_shorts/white_t_denim_shorts_idle_sheet.png",
+      "frames": [
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/white_t_denim_shorts/white_t_denim_shorts_idle_00.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/white_t_denim_shorts/white_t_denim_shorts_idle_01.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/white_t_denim_shorts/white_t_denim_shorts_idle_02.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/white_t_denim_shorts/white_t_denim_shorts_idle_03.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/white_t_denim_shorts/white_t_denim_shorts_idle_04.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/white_t_denim_shorts/white_t_denim_shorts_idle_05.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/white_t_denim_shorts/white_t_denim_shorts_idle_06.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/white_t_denim_shorts/white_t_denim_shorts_idle_07.png"
+      ]
+    },
+    {
+      "name": "yukata",
+      "frame_count": 8,
+      "frame_size": [
+        260,
+        873
+      ],
+      "sheet": "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/yukata/yukata_idle_sheet.png",
+      "frames": [
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/yukata/yukata_idle_00.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/yukata/yukata_idle_01.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/yukata/yukata_idle_02.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/yukata/yukata_idle_03.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/yukata/yukata_idle_04.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/yukata/yukata_idle_05.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/yukata/yukata_idle_06.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/skin_sprites/yukata/yukata_idle_07.png"
+      ]
+    }
+  ]
+}

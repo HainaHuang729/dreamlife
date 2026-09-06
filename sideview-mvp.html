@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>晨谷农场 - 侧视角最小原型</title>
+    <link rel="stylesheet" href="sideview-mvp.css">
+  </head>
+  <body>
+    <main class="app">
+      <section class="stage-shell" aria-label="侧视角游戏原型">
+        <canvas id="game" width="960" height="540" aria-label="游戏画面"></canvas>
+        <div class="hud topbar">
+          <div>
+            <span id="dayLabel">立春 第1日</span>
+            <span id="phaseLabel">清晨</span>
+          </div>
+          <div>
+            <span id="moneyLabel">金币 120</span>
+            <span id="seedLabel">种子 6</span>
+          </div>
+          <button id="nextPhase" type="button">下一阶段</button>
+        </div>
+        <div id="toast" class="hud toast">WASD/方向键连续移动，视角会跟随主角，1-4 换工具，空格使用工具，E 互动，N 推进时间。</div>
+        <div id="hotbar" class="hud hotbar"></div>
+      </section>
+
+      <aside class="panel">
+        <h1>侧视角 MVP</h1>
+        <p class="lede">验证横版轻剖面视角是否能承载种田、村庄互动和助农订单。</p>
+        <section>
+          <h2>当前目标</h2>
+          <ol id="tasks"></ol>
+        </section>
+        <section>
+          <h2>背包</h2>
+          <div id="inventory" class="inventory"></div>
+        </section>
+        <section>
+          <h2>操作</h2>
+          <p>靠近农田用锄头、种子、水壶和镰刀完成一轮种植。画面会放大并跟随主角移动；靠近老宅按 E 可以休息并进入下一阶段，收获后到老宅旁的助农货箱按 E 交付试吃订单。</p>
+        </section>
+      </aside>
+    </main>
+
+    <script src="sideview-mvp.js"></script>
+  </body>
+</html>

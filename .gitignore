@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+
+# Godot generated cache
+.godot/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Editor files
+.vscode/
+.idea/
+*~

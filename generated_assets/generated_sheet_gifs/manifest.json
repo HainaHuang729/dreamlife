@@ -1,0 +1,98 @@
+{
+  "source": "/Users/amadeus/.codex/generated_images/019dd771-e189-7c83-8edd-28957e8203e9/ig_03b5e560e2af568c0169f18ee545008191b30a0a6c3a3cf9ee.png",
+  "grid": [
+    6,
+    8
+  ],
+  "frame_size": [
+    128,
+    256
+  ],
+  "frame_duration_ms": 160,
+  "gifs": [
+    {
+      "name": "sport_swimsuit",
+      "path": "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/sport_swimsuit_idle.gif",
+      "frames": [
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/sport_swimsuit/sport_swimsuit_00.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/sport_swimsuit/sport_swimsuit_01.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/sport_swimsuit/sport_swimsuit_02.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/sport_swimsuit/sport_swimsuit_03.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/sport_swimsuit/sport_swimsuit_04.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/sport_swimsuit/sport_swimsuit_05.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/sport_swimsuit/sport_swimsuit_06.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/sport_swimsuit/sport_swimsuit_07.png"
+      ]
+    },
+    {
+      "name": "camisole_skirt",
+      "path": "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/camisole_skirt_idle.gif",
+      "frames": [
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/camisole_skirt/camisole_skirt_00.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/camisole_skirt/camisole_skirt_01.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/camisole_skirt/camisole_skirt_02.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/camisole_skirt/camisole_skirt_03.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/camisole_skirt/camisole_skirt_04.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/camisole_skirt/camisole_skirt_05.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/camisole_skirt/camisole_skirt_06.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/camisole_skirt/camisole_skirt_07.png"
+      ]
+    },
+    {
+      "name": "yukata",
+      "path": "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/yukata_idle.gif",
+      "frames": [
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/yukata/yukata_00.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/yukata/yukata_01.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/yukata/yukata_02.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/yukata/yukata_03.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/yukata/yukata_04.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/yukata/yukata_05.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/yukata/yukata_06.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/yukata/yukata_07.png"
+      ]
+    },
+    {
+      "name": "bath_towel",
+      "path": "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/bath_towel_idle.gif",
+      "frames": [
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/bath_towel/bath_towel_00.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/bath_towel/bath_towel_01.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/bath_towel/bath_towel_02.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/bath_towel/bath_towel_03.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/bath_towel/bath_towel_04.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/bath_towel/bath_towel_05.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/bath_towel/bath_towel_06.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/bath_towel/bath_towel_07.png"
+      ]
+    },
+    {
+      "name": "floral_dress",
+      "path": "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/floral_dress_idle.gif",
+      "frames": [
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/floral_dress/floral_dress_00.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/floral_dress/floral_dress_01.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/floral_dress/floral_dress_02.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/floral_dress/floral_dress_03.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/floral_dress/floral_dress_04.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/floral_dress/floral_dress_05.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/floral_dress/floral_dress_06.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/floral_dress/floral_dress_07.png"
+      ]
+    },
+    {
+      "name": "white_t_denim_shorts",
+      "path": "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/white_t_denim_shorts_idle.gif",
+      "frames": [
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/white_t_denim_shorts/white_t_denim_shorts_00.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/white_t_denim_shorts/white_t_denim_shorts_01.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/white_t_denim_shorts/white_t_denim_shorts_02.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/white_t_denim_shorts/white_t_denim_shorts_03.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/white_t_denim_shorts/white_t_denim_shorts_04.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/white_t_denim_shorts/white_t_denim_shorts_05.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/white_t_denim_shorts/white_t_denim_shorts_06.png",
+        "/Users/amadeus/Documents/New project 2/generated_assets/generated_sheet_gifs/frames/white_t_denim_shorts/white_t_denim_shorts_07.png"
+      ]
+    }
+  ]
+}

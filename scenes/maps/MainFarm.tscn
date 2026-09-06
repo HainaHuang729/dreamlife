@@ -1,0 +1,150 @@
+[gd_scene format=3 uid="uid://dar2vpn60sj12"]
+
+[ext_resource type="Texture2D" uid="uid://b3iuakl1o8py0" path="res://assets/concept/farm_layers/main-farm-terrain-base.png" id="1_terrain"]
+[ext_resource type="Texture2D" uid="uid://brboqtc6qpgl4" path="res://assets/concept/farm_layers/farmhouse-trim.png" id="2_farmhouse"]
+[ext_resource type="Texture2D" uid="uid://pjl28ro15p3f" path="res://assets/concept/farm_layers/greenhouse-trim.png" id="3_greenhouse"]
+[ext_resource type="Texture2D" uid="uid://byic6g5kx3s8e" path="res://assets/concept/farm_layers/chicken-coop-trim.png" id="4_chicken_coop"]
+[ext_resource type="Texture2D" uid="uid://cnea6tkd5kcrj" path="res://assets/concept/farm_layers/tool-shed-trim.png" id="5_tool_shed"]
+[ext_resource type="Texture2D" uid="uid://bgxogplmkn8y4" path="res://assets/concept/farm_layers/shipping-box-trim.png" id="6_shipping_box"]
+[ext_resource type="PackedScene" path="res://scenes/player/Player.tscn" id="7_player"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_MapHorizontal"]
+size = Vector2(1600, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_MapVertical"]
+size = Vector2(48, 1150)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_FarmhouseFootprint"]
+size = Vector2(220, 76)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_GreenhouseFootprint"]
+size = Vector2(148, 82)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_CoopFootprint"]
+size = Vector2(154, 68)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ShedFootprint"]
+size = Vector2(82, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_BoxFootprint"]
+size = Vector2(54, 38)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_PondSmall"]
+radius = 70.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_PondLarge"]
+radius = 92.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_WallLong"]
+size = Vector2(228, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_WallMedium"]
+size = Vector2(187, 34)
+
+[node name="MainFarm" type="Node2D" unique_id=1148019112]
+
+[node name="TerrainPreview" type="Sprite2D" parent="." unique_id=1598753037]
+position = Vector2(750.5, 524)
+texture = ExtResource("1_terrain")
+
+[node name="Collision" type="StaticBody2D" parent="." unique_id=566256958]
+
+[node name="NorthBoundary" type="CollisionShape2D" parent="Collision" unique_id=631279342]
+position = Vector2(750, -24)
+shape = SubResource("RectangleShape2D_MapHorizontal")
+
+[node name="SouthBoundary" type="CollisionShape2D" parent="Collision" unique_id=1779364983]
+position = Vector2(750, 1072)
+shape = SubResource("RectangleShape2D_MapHorizontal")
+
+[node name="WestBoundary" type="CollisionShape2D" parent="Collision" unique_id=1029643994]
+position = Vector2(-24, 524)
+shape = SubResource("RectangleShape2D_MapVertical")
+
+[node name="EastBoundary" type="CollisionShape2D" parent="Collision" unique_id=217023995]
+position = Vector2(1525, 524)
+shape = SubResource("RectangleShape2D_MapVertical")
+
+[node name="FarmhouseFootprint" type="CollisionShape2D" parent="Collision" unique_id=556910685]
+position = Vector2(1075, 235)
+shape = SubResource("RectangleShape2D_FarmhouseFootprint")
+
+[node name="GreenhouseFootprint" type="CollisionShape2D" parent="Collision" unique_id=830979825]
+position = Vector2(198, 548)
+shape = SubResource("RectangleShape2D_GreenhouseFootprint")
+
+[node name="ChickenCoopFootprint" type="CollisionShape2D" parent="Collision" unique_id=1162292521]
+position = Vector2(365, 837)
+shape = SubResource("RectangleShape2D_CoopFootprint")
+
+[node name="ToolShedFootprint" type="CollisionShape2D" parent="Collision" unique_id=384092835]
+position = Vector2(205, 176)
+shape = SubResource("RectangleShape2D_ShedFootprint")
+
+[node name="ShippingBoxFootprint" type="CollisionShape2D" parent="Collision" unique_id=1682965427]
+position = Vector2(1235, 184)
+shape = SubResource("RectangleShape2D_BoxFootprint")
+
+[node name="PondLeft" type="CollisionShape2D" parent="Collision" unique_id=230624118]
+position = Vector2(1150, 826)
+shape = SubResource("CircleShape2D_PondSmall")
+
+[node name="PondCenter" type="CollisionShape2D" parent="Collision" unique_id=587785536]
+position = Vector2(1203, 865)
+shape = SubResource("CircleShape2D_PondLarge")
+
+[node name="PondRight" type="CollisionShape2D" parent="Collision" unique_id=1296564167]
+position = Vector2(1157, 900)
+shape = SubResource("CircleShape2D_PondSmall")
+
+[node name="UpperLeftTerraceWallA" type="CollisionShape2D" parent="Collision" unique_id=254761517]
+position = Vector2(164, 329)
+shape = SubResource("RectangleShape2D_WallLong")
+
+[node name="UpperLeftTerraceWallB" type="CollisionShape2D" parent="Collision" unique_id=1848715243]
+position = Vector2(439, 329)
+shape = SubResource("RectangleShape2D_WallMedium")
+
+[node name="FarmhousePlateauWallA" type="CollisionShape2D" parent="Collision" unique_id=2094769957]
+position = Vector2(950.5, 365)
+shape = SubResource("RectangleShape2D_WallMedium")
+
+[node name="FarmhousePlateauWallB" type="CollisionShape2D" parent="Collision" unique_id=1301705168]
+position = Vector2(1199, 369)
+shape = SubResource("RectangleShape2D_WallMedium")
+
+[node name="WorldObjects" type="Node2D" parent="." unique_id=1926874139]
+y_sort_enabled = true
+
+[node name="Greenhouse" type="Sprite2D" parent="WorldObjects" unique_id=1300036553]
+position = Vector2(198.00005, 587)
+scale = Vector2(0.275762, 0.275762)
+texture = ExtResource("3_greenhouse")
+offset = Vector2(0, -409)
+
+[node name="ChickenCoop" type="Sprite2D" parent="WorldObjects" unique_id=109136539]
+position = Vector2(366, 865.00006)
+scale = Vector2(0.187768, 0.187768)
+texture = ExtResource("4_chicken_coop")
+offset = Vector2(0, -419.5)
+
+[node name="ToolShed" type="Sprite2D" parent="WorldObjects" unique_id=1385394015]
+position = Vector2(205.00012, 195.00002)
+scale = Vector2(0.123057, 0.123057)
+texture = ExtResource("5_tool_shed")
+offset = Vector2(0, -402.5)
+
+[node name="Farmhouse" type="Sprite2D" parent="WorldObjects" unique_id=2028163690]
+position = Vector2(1075, 262)
+scale = Vector2(0.233447, 0.233447)
+texture = ExtResource("2_farmhouse")
+offset = Vector2(0, -371)
+
+[node name="ShippingBox" type="Sprite2D" parent="WorldObjects" unique_id=299273292]
+position = Vector2(1235.0001, 201)
+scale = Vector2(0.071531, 0.071531)
+texture = ExtResource("6_shipping_box")
+offset = Vector2(0, -327)
+
+[node name="Player" parent="WorldObjects" unique_id=1956009890 instance=ExtResource("7_player")]
+position = Vector2(1235, 267)

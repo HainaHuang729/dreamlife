@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://p0_farm_greybox"]
+
+[ext_resource type="Script" path="res://scripts/maps/p0_farm_greybox.gd" id="1_p0_farm"]
+
+[node name="P0FarmGreybox" type="Node2D"]
+script = ExtResource("1_p0_farm")
